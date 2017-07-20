@@ -1,0 +1,84 @@
+Erlang Session Notes:
+
+------------------------------------------------------------------------------------------------------------------
+::::::::::::::::::::::::::::::SESSION 2::::::::::::::::::::::::::::::
+
+1. Atoms are useful as Constants. Can be used for comparison.
+
+2. Data Types.
+
+	1. Tuple: Fixed size array.
+		- {a, 2, -1} is Tuple with 3 elements.
+		- tuple_size({a, 2, -1}) - to get size of tuple.
+		- element(3, {a, 2, -1}) gives -1.
+		- setelement(3, {a,2,-1}, xyz) will give, {a,2,xyz}
+		- Nested tuples are possible.
+		- {} is empty tuple.
+
+	2. List: Fixed size list.
+		- A = [a,b,c].
+		- [x|A]. Otuput will be [x,a,b,c]. It is dynamic in terms of adding variables.
+		- Only prepend allowed. No append.
+		- Lists of lists is possible, >[A|B].
+		- Append is eg: >A ++ [d].
+		- [] is empty list.
+		- [A|_] = [x,y,z]. This gives A=x. Getting first element in a list.
+		- [A|B] = [x,y,z]. This gives A=x, B=[y,z].
+		- [A,B|C] = [x,y,z,1,2,3]. This gives A=x, B=y. C=[z,1,2,3]
+		- Head of List: hd(L). This gives x.
+		- Tail of List: tl(L). This gives [y,z,1,2,3].
+
+	3. Combination of Lists and Tuple.
+		- [{a,b,c},3,[[[a]]]] - First element tupple, second a number, 3rd is a list of list of list.
+
+	4. Records.
+		- This is just a tuple.
+		- rr(module_name). Read record method.
+		- If you are defining list in record as one of the variable, then do this, 
+			(state, {alarms =[] :: list,abc}).
+
+	5. Maps.
+		- M = #{x => 42}. This created map with key=x and value=42.
+		- To get value: #{x := V} = M. Then V=42.
+		- := can be done for existing values but not new additions.
+
+	6. Booleans.
+		- Just uses atoms true & false.
+		- is_boolean(true) - true.
+		- is_boolean(false) - false.
+
+	7. Binary
+		- <<1,2,3>> This means 3 bytes stored with values 1,2,3 respectively.
+
+
+
+3. f(). - This forgets data in shell.
+
+4. Weird Stuff.
+
+	a. [96,97,98]. gives "`ab"
+		-This is list of ASCII characters.
+	b. $a. gives 97.
+	c. [$a,$b | _] = "abcdef". Such things are used to map/match strings. Does my string start with ab?
+
+
+5. lists is one of the useful utility module.
+
+------------------------------------------------------------------------------------------------------------------
+
+::::::::::::::::::::::::::::::SESSION 3::::::::::::::::::::::::::::::
+
+1. -compile(export_all). ----> To export every function in this module.
+
+2. Function clauses have to go in sequence.
+
+	translate(a) -> 1;
+	translate(b) -> 2.
+
+3. Concurrent Programming
+	a. Selective Message Reception vs Receive Message with multiple clauses.
+	b. receive after Time for timeouts on msgs.
+
+------------------------------------------------------------------------------------------------------------------
+
+::::::::::::::::::::::::::::::SESSION 4::::::::::::::::::::::::::::::
